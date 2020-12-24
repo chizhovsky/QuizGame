@@ -79,15 +79,15 @@ public class QuizManager : MonoBehaviour
     {
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(true);
-        finalScoreText.text = "Your final score is " + score;
+        finalScoreText.text = "Твой результат - " + score;
         if (score > PlayerPrefs.GetInt("Highscore", 0))
         {
             PlayerPrefs.SetInt("Highscore", score);
-            recordText.text = "Congratulations! It is your new record!";
+            recordText.text = "Поздравляем! Это твой новый рекорд!";
         }
         else
         {
-            recordText.text = "Your record is " + PlayerPrefs.GetInt("Highscore");
+            recordText.text = "Твой рекорд - " + PlayerPrefs.GetInt("Highscore");
         }
 
         Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
