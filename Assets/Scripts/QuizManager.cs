@@ -37,11 +37,6 @@ public class QuizManager : MonoBehaviour
         questionCounter++;
     }
 
-    public void Retry ()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
     void SetAnswers()
     {
         for (int i = 0; i < options.Length; i++)
@@ -58,7 +53,7 @@ public class QuizManager : MonoBehaviour
 
     void GenerateQuestion()
     {
-        if (questionCounter<5)
+        if (questionCounter < 5)
         {
             currentQuestion = Random.Range(0, listOfQuestions.Count);
             questionText.text = listOfQuestions[currentQuestion].question;
@@ -91,12 +86,6 @@ public class QuizManager : MonoBehaviour
         }
 
         Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
-    }
-
-    public void ResetRecord()
-    {
-        PlayerPrefs.SetInt("Highscore", 0);
-        Debug.Log("Сброс рекорда, PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
     }
 
     public int CountPoints(float time)
