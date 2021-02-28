@@ -87,7 +87,7 @@ public class QuizManager : MonoBehaviour
 
         Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
     }
-
+//what a beatiful day
     public int CountPoints(float time)
     {
         string str = time.ToString("0.0");
