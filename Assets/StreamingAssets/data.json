@@ -1,0 +1,47 @@
+{
+"questionAndAnswers":[
+    {
+        "question": "Who is the best footballer?",
+        "imageUrl": "",
+        "answers":["Beckham", "Messi", "Ibrahimovic", "Ronaldo"],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Who is the best teso player?",
+        "imageUrl": "",
+        "answers":["chizh", "tolpak", "frizer", "esskah"],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Who is the best pet?",
+        "imageUrl": "",
+        "answers":["hamster", "cat", "dog", "crocodile"],
+        "correctAnswer": 4
+    },
+    {
+        "question": "Where am I?",
+        "imageUrl": "",
+        "answers":["Egypt", "Malta", "Sweden", "Russia"],
+        "correctAnswer": 4
+    },
+    {
+        "question": "How much snickers do I have?",
+        "imageUrl": "",
+        "answers":["1","22","33","50"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Где находится Ботсвана?",
+        "imageUrl": "",
+        "answers":["Южная Америка","Африка","Азия","Северная Америка"],
+        "correctAnswer": 2
+    },
+    {
+        "question": "За сколько желтых карточек дают красную в футболе?",
+        "imageUrl": "",
+        "answers":["1","2","3","4"],
+        "correctAnswer": 2
+    }
+
+]
+}

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
+using UnityEngine.Networking ;
 
 public class QuizManager : MonoBehaviour
 {
     public List<QuestionAndAnswers> listOfQuestions;
+    public QuestionsList questionsList;
     public GameObject[] options;
 
     public Text questionText;
@@ -16,17 +19,60 @@ public class QuizManager : MonoBehaviour
     public CountdownTimer countdownTimer;
     public GameObject gamePanel;
     public GameObject gameOverPanel;
+    public RawImage questionImage;
 
     public int currentQuestion;
     public int score;
     int questionCounter;
+    string jsonURL = "https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN";
 
 
     private void Start()
     {
-        gamePanel.SetActive(true);
+            StartCoroutine (GetJsonData (jsonURL)) ;
+             gamePanel.SetActive(true);
         gameOverPanel.SetActive(false);
         GenerateQuestion();
+    }
+
+        IEnumerator GetJsonData (string url) 
+        {
+            UnityWebRequest request = UnityWebRequest.Get (url) ;
+
+            yield return request.SendWebRequest() ;
+
+            if (request.isNetworkError || request.isHttpError)
+                {
+                Debug.Log("Can't load questions");
+                } 
+            else 
+            {
+                QuestionsList loadedData = JsonUtility.FromJson<QuestionsList> (request.downloadHandler.text) ;
+                questionsList = loadedData;
+                listOfQuestions = questionsList.questionAndAnswers;
+        }
+        request.Dispose () ;
+        /*
+        IEnumerator GetImage (string url) 
+        {
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture (url) ;
+
+        yield return request.SendWebRequest() ;
+
+        if (request.isNetworkError || request.isHttpError) 
+        {
+         Debug.Log("Can't load image");
+        } 
+        else 
+        {
+        questionImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture ;
+        }
+
+     
+      request.Dispose () ;
+    }
+
+       */
     }
 
     public void NextQuestion()
