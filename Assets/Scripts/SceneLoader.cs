@@ -18,10 +18,8 @@ public class SceneLoader : MonoBehaviour
         PlayerPrefs.SetInt("Highscore", 0);
         Debug.Log("Сброс рекорда, PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
     }
-
     public void QuitGame()
     {
         Application.Quit();
     }
-
 }

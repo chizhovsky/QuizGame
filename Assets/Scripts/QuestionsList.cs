@@ -1,8 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-    public class QuestionsList
-    {
-        public List<QuestionAndAnswers> questionAndAnswers;
-    }
+[System.Serializable]
+public class QuestionsList 
+{
+    public List<QuestionAndAnswers> questionAndAnswers;
+}
+
+[System.Serializable]
+public class QuestionAndAnswers 
+{
+    public string question;
+    public string imageUrl;
+    public string[] answers;
+    public int correctAnswer;
+}

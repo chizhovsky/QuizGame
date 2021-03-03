@@ -19,60 +19,68 @@ public class QuizManager : MonoBehaviour
     public CountdownTimer countdownTimer;
     public GameObject gamePanel;
     public GameObject gameOverPanel;
+    public GameObject loadingScreen;
     public RawImage questionImage;
 
     public int currentQuestion;
     public int score;
-    int questionCounter;
-    string jsonURL = "https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN";
+    private int questionCounter;
 
 
     private void Start()
     {
-            StartCoroutine (GetJsonData (jsonURL)) ;
-             gamePanel.SetActive(true);
+        StartCoroutine (GetJsonData ("https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN")) ;
+        gamePanel.SetActive(true);
         gameOverPanel.SetActive(false);
-        GenerateQuestion();
     }
 
-        IEnumerator GetJsonData (string url) 
+    IEnumerator GetJsonData (string url) 
+    {
+        UnityWebRequest request = UnityWebRequest.Get (url);
+        yield return request.SendWebRequest();
+
+        if (request.isNetworkError || request.isHttpError)
+            {
+            Debug.Log ("Can't load questions");
+            } 
+        else 
         {
-            UnityWebRequest request = UnityWebRequest.Get (url) ;
-
-            yield return request.SendWebRequest() ;
-
-            if (request.isNetworkError || request.isHttpError)
-                {
-                Debug.Log("Can't load questions");
-                } 
+            QuestionsList loadedData = JsonUtility.FromJson<QuestionsList> (request.downloadHandler.text) ;
+            questionsList = loadedData;
+            listOfQuestions = questionsList.questionAndAnswers;
+            Debug.Log ("Questions are loaded from web");
+            if (request.isDone)
+            {
+                GenerateQuestion();
+                ResetTimer();
+                gamePanel.SetActive(true);
+                loadingScreen.SetActive(false);
+            }
             else 
             {
-                QuestionsList loadedData = JsonUtility.FromJson<QuestionsList> (request.downloadHandler.text) ;
-                questionsList = loadedData;
-                listOfQuestions = questionsList.questionAndAnswers;
+                loadingScreen.SetActive(true);
+                gamePanel.SetActive(false);
+            }
         }
-        request.Dispose () ;
-        /*
-        IEnumerator GetImage (string url) 
-        {
-        UnityWebRequest request = UnityWebRequestTexture.GetTexture (url) ;
 
+        request.Dispose () ;
+    }
+    
+    IEnumerator GetImage (string url) 
+    {
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture (url) ;
         yield return request.SendWebRequest() ;
 
         if (request.isNetworkError || request.isHttpError) 
-        {
-         Debug.Log("Can't load image");
-        } 
+            {
+            Debug.Log("Can't load image");
+            } 
         else 
-        {
-        questionImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture ;
-        }
+            {
+            questionImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture ;
+            }
 
-     
-      request.Dispose () ;
-    }
-
-       */
+        request.Dispose () ;
     }
 
     public void NextQuestion()
@@ -103,6 +111,7 @@ public class QuizManager : MonoBehaviour
         {
             currentQuestion = Random.Range(0, listOfQuestions.Count);
             questionText.text = listOfQuestions[currentQuestion].question;
+            StartCoroutine (GetImage (listOfQuestions[currentQuestion].imageUrl));
             SetAnswers();
         }
         else
@@ -133,7 +142,7 @@ public class QuizManager : MonoBehaviour
 
         Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
     }
-//what a beatiful day
+
     public int CountPoints(float time)
     {
         string str = time.ToString("0.0");
