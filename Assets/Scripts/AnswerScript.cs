@@ -4,24 +4,14 @@ using UnityEngine;
 
 public class AnswerScript : MonoBehaviour
 {
-    public bool isCorrect = false;
-    public QuizManager quizManager;
-
-    void Update()
-    {
-        if (quizManager.countdownTimer.currentTime <= 0f)
-        {
-            quizManager.NextQuestion();
-        }
-    }
-
+    public bool isCorrect;
     public void Answer()
     {
         if (isCorrect)
         {
-            quizManager.score = quizManager.CountPoints(quizManager.countdownTimer.currentTime);
-            quizManager.scoreText.text = quizManager.score.ToString();
+            QuizManager.instance.score = QuizManager.instance.CountPoints(UIManager.instance.currentTime);
+            UIManager.instance.scoreText.text = QuizManager.instance.score.ToString();
         }
-        quizManager.NextQuestion();
+        QuizManager.instance.NextQuestion();
     }
 }

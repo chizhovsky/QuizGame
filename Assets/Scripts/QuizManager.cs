@@ -8,30 +8,39 @@ using UnityEngine.Networking ;
 
 public class QuizManager : MonoBehaviour
 {
-    public List<QuestionAndAnswers> listOfQuestions;
-    public QuestionsList questionsList;
+    public static QuizManager instance { get; private set; }
+    
+    private List<QuestionAndAnswers> listOfQuestions;
+    private List<int> questionsIdList = new List<int>();
+    [HideInInspector]
     public GameObject[] options;
 
-    public Text questionText;
-    public Text scoreText;
-    public Text finalScoreText;
-    public Text recordText;
-    public CountdownTimer countdownTimer;
-    public GameObject gamePanel;
-    public GameObject gameOverPanel;
-    public GameObject loadingScreen;
-    public RawImage questionImage;
-
+    public QuestionsList questionsList;
     public int currentQuestion;
     public int score;
-    private int questionCounter;
-
+    public int questionCounter = 0;
 
     private void Start()
     {
-        StartCoroutine (GetJsonData ("https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN")) ;
-        gamePanel.SetActive(true);
-        gameOverPanel.SetActive(false);
+        StartCoroutine (GetJsonData ("https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN"));
+        UIManager.instance.gamePanel.SetActive(true);
+        UIManager.instance.gameOverPanel.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (UIManager.instance.currentTime <= 0f)
+        {
+            NextQuestion();
+        }
+    }
+
+    private void Awake ()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
     IEnumerator GetJsonData (string url) 
@@ -51,15 +60,16 @@ public class QuizManager : MonoBehaviour
             Debug.Log ("Questions are loaded from web");
             if (request.isDone)
             {
+                GenerateListOfQuestions();
                 GenerateQuestion();
                 ResetTimer();
-                gamePanel.SetActive(true);
-                loadingScreen.SetActive(false);
+                UIManager.instance.gamePanel.SetActive(true);
+                UIManager.instance.gameLoadingPanel.SetActive(false);
             }
             else 
             {
-                loadingScreen.SetActive(true);
-                gamePanel.SetActive(false);
+                UIManager.instance.gameLoadingPanel.SetActive(true);
+                UIManager.instance.gamePanel.SetActive(false);
             }
         }
 
@@ -77,18 +87,10 @@ public class QuizManager : MonoBehaviour
             } 
         else 
             {
-            questionImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture ;
+            UIManager.instance.questionImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture ;
             }
 
         request.Dispose () ;
-    }
-
-    public void NextQuestion()
-    {
-        listOfQuestions.RemoveAt(currentQuestion);
-        ResetTimer(); 
-        GenerateQuestion();
-        questionCounter++;
     }
 
     void SetAnswers()
@@ -100,17 +102,46 @@ public class QuizManager : MonoBehaviour
        
         if (listOfQuestions[currentQuestion].correctAnswer == i+1)
             {
-                options[i].GetComponent<AnswerScript>().isCorrect = true;
+                options[i].GetComponent<AnswerScript>().isCorrect = true;                                
             }
         }
     }
 
+    public void NextQuestion()
+    {
+        questionCounter++;
+        ResetTimer(); 
+        GenerateQuestion();
+        
+    }
+    
+    void GenerateListOfQuestions()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            int myNumber = Random.Range (0, listOfQuestions.Count);
+            int newNumber = 0;
+            if (!questionsIdList.Contains(myNumber))
+            {
+                questionsIdList.Add(myNumber);
+            }
+            else 
+            {
+                do
+                {
+                newNumber = Random.Range (0, listOfQuestions.Count);
+                } while (questionsIdList.Contains(newNumber));
+                questionsIdList.Add(newNumber);
+            }            
+        }
+    }
+    
     void GenerateQuestion()
     {
-        if (questionCounter < 5)
+        if (questionCounter < 6)
         {
-            currentQuestion = Random.Range(0, listOfQuestions.Count);
-            questionText.text = listOfQuestions[currentQuestion].question;
+            currentQuestion = questionsIdList[questionCounter];
+            UIManager.instance.questionText.text = listOfQuestions[currentQuestion].question;
             StartCoroutine (GetImage (listOfQuestions[currentQuestion].imageUrl));
             SetAnswers();
         }
@@ -122,22 +153,22 @@ public class QuizManager : MonoBehaviour
 
     public void ResetTimer()
     {
-        countdownTimer.currentTime = 10f;
+        UIManager.instance.currentTime = 10f;
     }
 
     void GameOver()
     {
-        gamePanel.SetActive(false);
-        gameOverPanel.SetActive(true);
-        finalScoreText.text = "Твой результат - " + score;
+        UIManager.instance.gamePanel.SetActive(false);
+        UIManager.instance.gameOverPanel.SetActive(true);
+        UIManager.instance.finalScoreText.text = "Твой результат - " + score;
         if (score > PlayerPrefs.GetInt("Highscore", 0))
         {
             PlayerPrefs.SetInt("Highscore", score);
-            recordText.text = "Поздравляем! Это твой новый рекорд!";
+            UIManager.instance.recordText.text = "Поздравляем! Это твой новый рекорд!";
         }
         else
         {
-            recordText.text = "Твой рекорд - " + PlayerPrefs.GetInt("Highscore");
+            UIManager.instance.recordText.text = "Твой рекорд - " + PlayerPrefs.GetInt("Highscore");
         }
 
         Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));

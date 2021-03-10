@@ -489,11 +489,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 191365136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf86841d0dfa61543825d9a37d106130, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd221b24c08c5141ac57084a49ba52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isCorrect: 0
-  quizManager: {fileID: 1441914198}
 --- !u!1 &191414435
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,11 +787,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 250332120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf86841d0dfa61543825d9a37d106130, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd221b24c08c5141ac57084a49ba52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isCorrect: 0
-  quizManager: {fileID: 1441914198}
 --- !u!1 &267490059
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +823,7 @@ RectTransform:
   - {fileID: 1155964040}
   - {fileID: 516899797}
   m_Father: {fileID: 1441914197}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1030,7 +1028,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1962821181}
+      - m_Target: {fileID: 1441914199}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
@@ -1078,52 +1076,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323667393}
   m_CullTransparentMesh: 0
---- !u!1 &479690599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 479690601}
-  - component: {fileID: 479690600}
-  m_Layer: 0
-  m_Name: CountdownTimer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &479690600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479690599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec8cbde8781f1e44be5da31bc58a78c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTime: 0
-  timerText: {fileID: 1444999069}
-  timeIsOver: 0
---- !u!4 &479690601
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479690599}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 269, y: 126.09375, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510646314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,17 +1678,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1021906330}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1021906328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,11 +1724,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1021906325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf86841d0dfa61543825d9a37d106130, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd221b24c08c5141ac57084a49ba52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isCorrect: 0
-  quizManager: {fileID: 1441914198}
 --- !u!1 &1043394459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,6 +2205,8 @@ GameObject:
   - component: {fileID: 1441914195}
   - component: {fileID: 1441914194}
   - component: {fileID: 1441914198}
+  - component: {fileID: 1441914199}
+  - component: {fileID: 1441914200}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2344,8 +2286,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 191414436}
-  - {fileID: 267490060}
   - {fileID: 1618747016}
+  - {fileID: 267490060}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2366,25 +2308,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2060d2ebec019b6499346be37ea2eab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listOfQuestions: []
-  questionsList:
-    questionAndAnswers: []
   options:
   - {fileID: 1021906325}
   - {fileID: 2122939158}
   - {fileID: 191365136}
   - {fileID: 250332120}
+  questionsList:
+    questionAndAnswers: []
+  currentQuestion: 0
+  score: 0
+  questionCounter: 0
+--- !u!114 &1441914199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441914193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502440db1ebfb2b4f92b88f82b619dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1441914200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441914193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b80d3f42307574e8391a8b56a20db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   questionText: {fileID: 1798913542}
   scoreText: {fileID: 1724179383}
   finalScoreText: {fileID: 510646316}
   recordText: {fileID: 1144984720}
-  countdownTimer: {fileID: 479690600}
   gamePanel: {fileID: 191414435}
+  gameLoadingPanel: {fileID: 1618747015}
   gameOverPanel: {fileID: 267490059}
-  loadingScreen: {fileID: 1618747015}
   questionImage: {fileID: 118115875}
-  currentQuestion: 0
-  score: 0
+  currentTime: 0
+  timerText: {fileID: 1444999069}
+  timeIsOver: 0
 --- !u!1 &1444999067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2461,7 @@ Transform:
   - {fileID: 1169874883}
   - {fileID: 1224616484}
   m_Father: {fileID: 1441914197}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1717567238
 GameObject:
@@ -2961,8 +2929,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1962821181}
-        m_MethodName: LoadMenu
+      - m_Target: {fileID: 1441914199}
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3009,49 +2977,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950475926}
   m_CullTransparentMesh: 0
---- !u!1 &1962821180
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1962821182}
-  - component: {fileID: 1962821181}
-  m_Layer: 0
-  m_Name: SceneLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1962821181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962821180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502440db1ebfb2b4f92b88f82b619dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1962821182
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962821180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 255.5, y: 225.42184, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1971142693
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,8 +3196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2122939158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf86841d0dfa61543825d9a37d106130, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd221b24c08c5141ac57084a49ba52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isCorrect: 0
-  quizManager: {fileID: 1441914198}

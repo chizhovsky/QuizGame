@@ -21,5 +21,6 @@ public class SceneLoader : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+        Debug.Log("Вышел из игры");
     }
 }
