@@ -14,11 +14,11 @@ public class UIManager : MonoBehaviour
     public GameObject gamePanel;
     public GameObject gameLoadingPanel;
     public GameObject gameOverPanel;
+    public List<Texture> loadedImages = new List<Texture>();
     public RawImage questionImage;
 
     public float currentTime;
     public Text timerText;
-    public bool timeIsOver = false;
     
 
     private void Awake ()

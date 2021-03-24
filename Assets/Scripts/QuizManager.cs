@@ -1,10 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
-using UnityEngine.Networking ;
+using UnityEngine.Networking;
+using System.Threading.Tasks;
 
 public class QuizManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class QuizManager : MonoBehaviour
     
     private List<QuestionAndAnswers> listOfQuestions;
     private List<int> questionsIdList = new List<int>();
+    private List<string> arrayOfImageURL = new List<string>();
     [HideInInspector]
     public GameObject[] options;
 
@@ -22,6 +24,8 @@ public class QuizManager : MonoBehaviour
 
     private void Start()
     {
+        UIManager.instance.gamePanel.SetActive(false);
+        UIManager.instance.gameLoadingPanel.SetActive(true); 
         StartCoroutine (GetJsonData ("https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN"));
         UIManager.instance.gamePanel.SetActive(true);
         UIManager.instance.gameOverPanel.SetActive(false);
@@ -49,48 +53,39 @@ public class QuizManager : MonoBehaviour
         yield return request.SendWebRequest();
 
         if (request.isNetworkError || request.isHttpError)
-            {
+        {
             Debug.Log ("Can't load questions");
-            } 
+        } 
         else 
         {
-            QuestionsList loadedData = JsonUtility.FromJson<QuestionsList> (request.downloadHandler.text) ;
+            QuestionsList loadedData = JsonUtility.FromJson<QuestionsList> (request.downloadHandler.text);
             questionsList = loadedData;
             listOfQuestions = questionsList.questionAndAnswers;
             Debug.Log ("Questions are loaded from web");
-            if (request.isDone)
+            GenerateListOfQuestions();
+            StartCoroutine (LoadQuestions(arrayOfImageURL));
+        }
+    }
+
+    IEnumerator LoadQuestions (List<string> url) 
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            UnityWebRequest request = UnityWebRequestTexture.GetTexture (url[i]);
+            yield return request.SendWebRequest();
+            if (request.isNetworkError || request.isHttpError) 
             {
-                GenerateListOfQuestions();
-                GenerateQuestion();
-                ResetTimer();
-                UIManager.instance.gamePanel.SetActive(true);
-                UIManager.instance.gameLoadingPanel.SetActive(false);
-            }
+                Debug.Log("Can't load image");
+            } 
             else 
-            {
-                UIManager.instance.gameLoadingPanel.SetActive(true);
-                UIManager.instance.gamePanel.SetActive(false);
+            {    
+                UIManager.instance.loadedImages.Add(((DownloadHandlerTexture)request.downloadHandler).texture);
             }
         }
-
-        request.Dispose () ;
-    }
-    
-    IEnumerator GetImage (string url) 
-    {
-        UnityWebRequest request = UnityWebRequestTexture.GetTexture (url) ;
-        yield return request.SendWebRequest() ;
-
-        if (request.isNetworkError || request.isHttpError) 
-            {
-            Debug.Log("Can't load image");
-            } 
-        else 
-            {
-            UIManager.instance.questionImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture ;
-            }
-
-        request.Dispose () ;
+        GenerateQuestion();
+        ResetTimer();
+        UIManager.instance.gamePanel.SetActive(true);
+        UIManager.instance.gameLoadingPanel.SetActive(false);        
     }
 
     void SetAnswers()
@@ -112,7 +107,6 @@ public class QuizManager : MonoBehaviour
         questionCounter++;
         ResetTimer(); 
         GenerateQuestion();
-        
     }
     
     void GenerateListOfQuestions()
@@ -132,7 +126,8 @@ public class QuizManager : MonoBehaviour
                 newNumber = Random.Range (0, listOfQuestions.Count);
                 } while (questionsIdList.Contains(newNumber));
                 questionsIdList.Add(newNumber);
-            }            
+            }
+            arrayOfImageURL.Add(listOfQuestions[questionsIdList[i]].imageUrl);      
         }
     }
     
@@ -142,12 +137,12 @@ public class QuizManager : MonoBehaviour
         {
             currentQuestion = questionsIdList[questionCounter];
             UIManager.instance.questionText.text = listOfQuestions[currentQuestion].question;
-            StartCoroutine (GetImage (listOfQuestions[currentQuestion].imageUrl));
+            UIManager.instance.questionImage.texture = UIManager.instance.loadedImages[questionCounter]; 
             SetAnswers();
         }
         else
         {
-            GameOver();
+            GameOver();                
         }
     }
 
@@ -170,7 +165,6 @@ public class QuizManager : MonoBehaviour
         {
             UIManager.instance.recordText.text = "Твой рекорд - " + PlayerPrefs.GetInt("Highscore");
         }
-
         Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
     }
 
