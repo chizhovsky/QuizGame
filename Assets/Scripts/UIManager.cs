@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance { get; private set; }
-    
+    public Text[] answerText = new Text[4];    
     public Text questionText;
     public Text scoreText;
     public Text finalScoreText;
     public Text recordText;
+    public Text questionCounterText;
+    public Text transitionScoreText;
     public GameObject gamePanel;
     public GameObject gameLoadingPanel;
+    public GameObject transitionPanel;
     public GameObject gameOverPanel;
     public List<Texture> loadedImages = new List<Texture>();
     public RawImage questionImage;

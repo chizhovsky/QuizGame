@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationScript : MonoBehaviour
+public class LoadingCircleAnimationScript : MonoBehaviour
 {
     private RectTransform rectComponent;
     private float rotateSpeed = 250f;

@@ -14,8 +14,8 @@ public class QuizManager : MonoBehaviour
     private List<QuestionAndAnswers> listOfQuestions;
     private List<int> questionsIdList = new List<int>();
     private List<string> arrayOfImageURL = new List<string>();
-    [HideInInspector]
-    public GameObject[] options;
+    [HideInInspector] public GameObject[] options;
+    
 
     public QuestionsList questionsList;
     public int currentQuestion;
@@ -33,7 +33,7 @@ public class QuizManager : MonoBehaviour
 
     void Update()
     {
-        if (UIManager.instance.currentTime <= 0f)
+        if (UIManager.instance.currentTime <= 0)
         {
             NextQuestion();
         }
@@ -93,7 +93,7 @@ public class QuizManager : MonoBehaviour
         for (int i = 0; i < options.Length; i++)
         {
             options[i].GetComponent<AnswerScript>().isCorrect = false;
-            options[i].gameObject.transform.GetChild(0).GetComponent<Text>().text = listOfQuestions[currentQuestion].answers[i];
+            UIManager.instance.answerText[i].text = listOfQuestions[currentQuestion].answers[i];
        
         if (listOfQuestions[currentQuestion].correctAnswer == i+1)
             {
@@ -137,7 +137,7 @@ public class QuizManager : MonoBehaviour
         {
             currentQuestion = questionsIdList[questionCounter];
             UIManager.instance.questionText.text = listOfQuestions[currentQuestion].question;
-            UIManager.instance.questionImage.texture = UIManager.instance.loadedImages[questionCounter]; 
+            UIManager.instance.questionImage.texture = UIManager.instance.loadedImages[questionCounter];
             SetAnswers();
         }
         else
