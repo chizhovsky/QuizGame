@@ -19,12 +19,12 @@ public class UIManager
     public LoadingMenu loadingMenu;
     public GameOverMenu gameOverMenu;
 
-    public UnityEngine.GameObject mainCanvas;
-    private const string prefabUILocation = "/Prefabs/";
+    public Canvas mainCanvas;
+    private const string prefabUILocation = "Prefabs/";
     public void Init()
     {
-        mainCanvas = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("Canvas"));
-        //mainCanvas.enabled = false;
+        mainCanvas = Object.Instantiate(Resources.Load<Canvas>( prefabUILocation + "Canvas" ));
+        mainCanvas.enabled = false;
         //MonoBehaviour.DontDestroyOnLoad(MainCanvas);
 
         gameMenu = UnityEngine.Object.Instantiate(Resources.Load<GameMenu>(prefabUILocation + "GameMenu"), mainCanvas.transform);
