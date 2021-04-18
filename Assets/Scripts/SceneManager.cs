@@ -4,24 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneManager : MonoSingleton<SceneManager>
 {
-    
-    public static SceneLoader instance { get; private set; }
-    private void Awake ()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
     public void StartGame()
     {
-        SceneManager.LoadScene("Game");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }
     public void LoadMenu()
     {
-        SceneManager.LoadScene("StartMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu");
     }
     public void ResetRecord()
     {
