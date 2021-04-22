@@ -7,56 +7,31 @@ using System.IO;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
 
-public class QuizManager 
+public class GameplayManager
 {
-    private static readonly QuizManager _instance = new QuizManager();
-    static QuizManager(){}
-    private QuizManager(){}
-    public static QuizManager Instance
+    private static readonly GameplayManager _instance = new GameplayManager();
+    static GameplayManager(){}
+    private GameplayManager(){}
+    public static GameplayManager Instance
     {
         get { return _instance;}
     }
+
     private List<QuestionAndAnswers> _listOfQuestions;
     private List<int> _questionsIdList = new List<int>();
     private List<string> _arrayOfImageURL = new List<string>();
-    [HideInInspector] public GameObject[] options;
-    public QuestionsList questionsList;
+    private List<Texture> _loadedImages = new List<Texture>();
+    private QuestionsList questionsList;
     public int currentQuestion;
     public int score;
     public int questionCounter = 0;
-
-    public float currentTime;
-    private UIManager UI;
-    [HideInInspector] public Text[] answerText = new Text[4];    
-    [HideInInspector] public Text questionText;
-    [HideInInspector] public Text scoreText;
-    [HideInInspector] public Text finalScoreText;
-    [HideInInspector] public Text recordText;
-    [HideInInspector] public Text questionCounterText;
-    [HideInInspector] public GameObject menuPanel;
-    [HideInInspector] public GameObject settingsPanel;
-    [HideInInspector] public GameObject gamePanel;
-    [HideInInspector] public GameObject gameLoadingPanel;
-    [HideInInspector] public GameObject gameOverPanel;
-    [HideInInspector] public List<Texture> loadedImages = new List<Texture>();
-    [HideInInspector] public RawImage questionImage;
-    [HideInInspector] public Text timerText;
-
-    public void Update()
-    {
-        if (currentTime <= 0)
-        {
-            NextQuestion();
-        }
-    }
+    public float currentTime; 
+    
     public void Init()
     {
-        UI.SwitchPanels(gameLoadingPanel, gamePanel);
-        //StartCoroutine (GetJsonData ("https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN"));
-        UI.SwitchPanels(gamePanel, gameOverPanel);
+        
     }
-
-    IEnumerator GetJsonData (string url) 
+    private IEnumerator GetJsonDataRoutine (string url) 
     {
         UnityWebRequest request = UnityWebRequest.Get (url);
         yield return request.SendWebRequest();
@@ -72,11 +47,11 @@ public class QuizManager
             _listOfQuestions = questionsList.questionAndAnswers;
             Debug.Log ("Questions are loaded from web");
             GenerateListOfQuestions();
-           // StartCoroutine (LoadQuestions(_arrayOfImageURL));
+            GameManager.Instance.StartCoroutine (LoadQuestionsRoutine(_arrayOfImageURL));
         }
     }
 
-    IEnumerator LoadQuestions (List<string> url) 
+    private IEnumerator LoadQuestionsRoutine (List<string> url) 
     {
         for (int i = 0; i < 6; i++)
         {
@@ -88,24 +63,30 @@ public class QuizManager
             } 
             else 
             {    
-                loadedImages.Add(((DownloadHandlerTexture)request.downloadHandler).texture);
+                _loadedImages.Add(((DownloadHandlerTexture)request.downloadHandler).texture);
             }
         }
         GenerateQuestion();
         ResetTimer();
-        UI.SwitchPanels(gamePanel, gameLoadingPanel);
+        UIManager.Instance.gameMenu.ShowMenu();
+        UIManager.Instance.loadingMenu.HideMenu();
     }
 
-    void SetAnswers()
+    public void LoadDataFromWeb()
     {
-        for (int i = 0; i < options.Length; i++)
+        GameManager.Instance.StartCoroutine (GetJsonDataRoutine ("https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN"));
+    }
+
+    private void SetAnswers()
+    {
+        for (int i = 0; i < UIManager.Instance.gameMenu.answerButtons.Length; i++)
         {
-            options[i].GetComponent<AnswerScript>().isCorrect = false;
-            answerText[i].text = _listOfQuestions[currentQuestion].answers[i];
+            UIManager.Instance.gameMenu.isCorrect[i] = false;
+            UIManager.Instance.gameMenu.answerText[i].text = _listOfQuestions[currentQuestion].answers[i];
        
         if (_listOfQuestions[currentQuestion].correctAnswer == i+1)
             {
-                options[i].GetComponent<AnswerScript>().isCorrect = true;                                
+                UIManager.Instance.gameMenu.isCorrect[i] = true;                                
             }
         }
     }
@@ -117,7 +98,7 @@ public class QuizManager
         GenerateQuestion();
     }
     
-    void GenerateListOfQuestions()
+    private void GenerateListOfQuestions()
     {
         for (int i = 0; i < 6; i++)
         {
@@ -139,13 +120,13 @@ public class QuizManager
         }
     }
     
-    void GenerateQuestion()
+    private void GenerateQuestion()
     {
         if (questionCounter < 6)
         {
             currentQuestion = _questionsIdList[questionCounter];
-            questionText.text = _listOfQuestions[currentQuestion].question;
-            questionImage.texture = loadedImages[questionCounter];
+            UIManager.Instance.gameMenu.questionText.text = _listOfQuestions[currentQuestion].question;
+            UIManager.Instance.gameMenu.questionImage.texture = _loadedImages[questionCounter];
             SetAnswers();
         }
         else
@@ -154,23 +135,24 @@ public class QuizManager
         }
     }
 
-    public void ResetTimer()
+    private void ResetTimer()
     {
         currentTime = 10f;
     }
 
-    void GameOver()
+    private void GameOver()
     {
-        UI.SwitchPanels(gameOverPanel, gamePanel);
-        finalScoreText.text = "Твой результат - " + score;
+        UIManager.Instance.gameOverMenu.ShowMenu();
+        UIManager.Instance.gameMenu.HideMenu();
+        UIManager.Instance.gameOverMenu.finalScoreText.text = "Твой результат - " + score;
         if (score > PlayerPrefs.GetInt("Highscore", 0))
         {
             PlayerPrefs.SetInt("Highscore", score);
-            recordText.text = "Поздравляем! Это твой новый рекорд!";
+            UIManager.Instance.gameOverMenu.recordText.text = "Поздравляем! Это твой новый рекорд!";
         }
         else
         {
-            recordText.text = "Твой рекорд - " + PlayerPrefs.GetInt("Highscore");
+            UIManager.Instance.gameOverMenu.recordText.text = "Твой рекорд - " + PlayerPrefs.GetInt("Highscore");
         }
         Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
     }

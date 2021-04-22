@@ -91,11 +91,9 @@ GameObject:
   - component: {fileID: 8887391051984941571}
   - component: {fileID: 8887391051984941568}
   - component: {fileID: 8887391051984941823}
-  - component: {fileID: 8887391051984941820}
-  - component: {fileID: 8887391051984941569}
-  - component: {fileID: 8887391051984941822}
+  - component: {fileID: 1090154365836726082}
   m_Layer: 5
-  m_Name: Answer4
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +174,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
@@ -200,18 +198,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8887391051984941571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8887391051984941569}
-        m_MethodName: Answer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8887391051984941823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +214,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!95 &8887391051984941820
+--- !u!95 &1090154365836726082
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -237,7 +224,7 @@ Animator:
   m_GameObject: {fileID: 8887391051984941818}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 03aa28ca6f7f23b49aa9bc2075c0a081, type: 2}
+  m_Controller: {fileID: 9100000, guid: a1fd072096b04344c8fb0391d5bcd8a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -246,34 +233,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8887391051984941569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887391051984941818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd221b24c08c5141ac57084a49ba52f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCorrect: 0
---- !u!114 &8887391051984941822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887391051984941818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deef2c0f17fc78147a6bc7e993b811c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPressedAnim: {fileID: 0}
-  settingsPressedAnim: {fileID: 0}
-  exitPressedAnim: {fileID: 0}
 --- !u!1 &8887391052002831493
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,11 +850,9 @@ GameObject:
   - component: {fileID: 8887391053390094105}
   - component: {fileID: 8887391053390094102}
   - component: {fileID: 8887391053390094106}
-  - component: {fileID: 8887391053390094109}
-  - component: {fileID: 8887391053390094108}
-  - component: {fileID: 8887391053390094107}
+  - component: {fileID: 654283936500187665}
   m_Layer: 5
-  m_Name: Answer1
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -976,7 +933,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
@@ -1000,18 +957,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8887391053390094105}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8887391053390094108}
-        m_MethodName: Answer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8887391053390094106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,7 +973,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!95 &8887391053390094109
+--- !u!95 &654283936500187665
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -1037,7 +983,7 @@ Animator:
   m_GameObject: {fileID: 8887391053390094100}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 67c19fd74f0961e47acf1e1c5649a290, type: 2}
+  m_Controller: {fileID: 9100000, guid: a1fd072096b04344c8fb0391d5bcd8a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1046,34 +992,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8887391053390094108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887391053390094100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd221b24c08c5141ac57084a49ba52f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCorrect: 0
---- !u!114 &8887391053390094107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887391053390094100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deef2c0f17fc78147a6bc7e993b811c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPressedAnim: {fileID: 0}
-  settingsPressedAnim: {fileID: 0}
-  exitPressedAnim: {fileID: 0}
 --- !u!1 &8887391053428358426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,7 +1304,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2809d842218bd4e9a26993a4c2373f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
+  canvasGroup: {fileID: 4301975133982443252}
+  questionText: {fileID: 8887391052002831495}
+  questionImage: {fileID: 8887391053547461794}
+  scoreText: {fileID: 8887391051948552502}
+  _timerText: {fileID: 8887391052756221212}
+  answerButtons:
+  - {fileID: 8887391053390094102}
+  - {fileID: 8887391053970298443}
+  - {fileID: 8887391053872118883}
+  - {fileID: 8887391051984941568}
+  answerText:
+  - {fileID: 8887391052174545574}
+  - {fileID: 8887391052914300738}
+  - {fileID: 8887391053627166862}
+  - {fileID: 8887391052159078570}
+  animators:
+  - {fileID: 654283936500187665}
+  - {fileID: 6818174466627486738}
+  - {fileID: 4965689581075145572}
+  - {fileID: 1090154365836726082}
+  isCorrect: 00000000
 --- !u!225 &4301975133982443252
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1568,11 +1506,9 @@ GameObject:
   - component: {fileID: 8887391053872118882}
   - component: {fileID: 8887391053872118883}
   - component: {fileID: 8887391053872118878}
-  - component: {fileID: 8887391053872118879}
-  - component: {fileID: 8887391053872118880}
-  - component: {fileID: 8887391053872118881}
+  - component: {fileID: 4965689581075145572}
   m_Layer: 5
-  m_Name: Answer3
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1653,7 +1589,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
@@ -1677,18 +1613,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8887391053872118882}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8887391053872118880}
-        m_MethodName: Answer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8887391053872118878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,7 +1629,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!95 &8887391053872118879
+--- !u!95 &4965689581075145572
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -1714,7 +1639,7 @@ Animator:
   m_GameObject: {fileID: 8887391053872118877}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7f7e0e46bb02c6a45ab509123b0d786d, type: 2}
+  m_Controller: {fileID: 9100000, guid: a1fd072096b04344c8fb0391d5bcd8a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1723,34 +1648,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8887391053872118880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887391053872118877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd221b24c08c5141ac57084a49ba52f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCorrect: 0
---- !u!114 &8887391053872118881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887391053872118877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deef2c0f17fc78147a6bc7e993b811c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPressedAnim: {fileID: 0}
-  settingsPressedAnim: {fileID: 0}
-  exitPressedAnim: {fileID: 0}
 --- !u!1 &8887391053970298437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,11 +1661,9 @@ GameObject:
   - component: {fileID: 8887391053970298442}
   - component: {fileID: 8887391053970298443}
   - component: {fileID: 8887391053970298438}
-  - component: {fileID: 8887391053970298439}
-  - component: {fileID: 8887391053970298440}
-  - component: {fileID: 8887391053970298441}
+  - component: {fileID: 6818174466627486738}
   m_Layer: 5
-  m_Name: Answer2
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1849,7 +1744,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
@@ -1873,18 +1768,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8887391053970298442}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8887391053970298440}
-        m_MethodName: Answer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8887391053970298438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,7 +1784,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!95 &8887391053970298439
+--- !u!95 &6818174466627486738
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -1910,7 +1794,7 @@ Animator:
   m_GameObject: {fileID: 8887391053970298437}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4271a74e94a32ab4fa4f88fe53aee129, type: 2}
+  m_Controller: {fileID: 9100000, guid: a1fd072096b04344c8fb0391d5bcd8a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1919,31 +1803,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8887391053970298440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887391053970298437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd221b24c08c5141ac57084a49ba52f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCorrect: 0
---- !u!114 &8887391053970298441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887391053970298437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deef2c0f17fc78147a6bc7e993b811c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPressedAnim: {fileID: 0}
-  settingsPressedAnim: {fileID: 0}
-  exitPressedAnim: {fileID: 0}

@@ -24,28 +24,20 @@ public class UIManager
     public void Init()
     {
         mainCanvas = Object.Instantiate(Resources.Load<Canvas>( prefabUILocation + "Canvas" ));
-        mainCanvas.enabled = false;
-        //MonoBehaviour.DontDestroyOnLoad(MainCanvas);
-
-        gameMenu = UnityEngine.Object.Instantiate(Resources.Load<GameMenu>(prefabUILocation + "GameMenu"), mainCanvas.transform);
-        gameMenu.Init();
-
-        settingsMenu = UnityEngine.Object.Instantiate(Resources.Load<SettingsMenu>(prefabUILocation + "SettingsMenu"), mainCanvas.transform);
-        settingsMenu.Init();
 
         mainMenu = UnityEngine.Object.Instantiate(Resources.Load<MainMenu>(prefabUILocation + "MainMenu"), mainCanvas.transform);
         mainMenu.Init();
 
+        settingsMenu = UnityEngine.Object.Instantiate(Resources.Load<SettingsMenu>(prefabUILocation + "SettingsMenu"), mainCanvas.transform);
+        settingsMenu.Init();
+
         loadingMenu = UnityEngine.Object.Instantiate(Resources.Load<LoadingMenu>(prefabUILocation + "LoadingMenu"), mainCanvas.transform);
         loadingMenu.Init();
 
+        gameMenu = UnityEngine.Object.Instantiate(Resources.Load<GameMenu>(prefabUILocation + "GameMenu"), mainCanvas.transform);
+        gameMenu.Init();
+        
         gameOverMenu = UnityEngine.Object.Instantiate(Resources.Load<GameOverMenu>(prefabUILocation + "GameOverMenu"), mainCanvas.transform);
         gameOverMenu.Init();
-    }
-
-    public void SwitchPanels(GameObject panelTurnOn, GameObject panelTurnOff)
-    {
-        panelTurnOn.SetActive(true);
-        panelTurnOff.SetActive(false);
     }
 }
