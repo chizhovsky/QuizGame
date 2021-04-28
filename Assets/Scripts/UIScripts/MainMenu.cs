@@ -9,6 +9,7 @@ public class MainMenu : Menu
     [SerializeField] private Animator _startButtonAnim;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Animator _settingsButtonAnim;
+    
 
     public void Init()
     {
@@ -27,6 +28,7 @@ public class MainMenu : Menu
     {
         _startButtonAnim.SetTrigger("IsPressed");
         yield return new WaitForSeconds(2f);
+        AudioManager.Instance.sfxSource.PlayOneShot(AudioManager.Instance.audioData.buttonPressed.clip);
         UIManager.Instance.loadingMenu.ShowMenu();
         UIManager.Instance.mainMenu.HideMenu();
         GameplayManager.Instance.LoadDataFromWeb();
@@ -35,6 +37,7 @@ public class MainMenu : Menu
     {
         _settingsButtonAnim.SetTrigger("IsPressed");
         yield return new WaitForSeconds(2f);
+        AudioManager.Instance.sfxSource.PlayOneShot(AudioManager.Instance.audioData.buttonPressed.clip);
         UIManager.Instance.settingsMenu.ShowMenu();
         UIManager.Instance.mainMenu.HideMenu();
     }

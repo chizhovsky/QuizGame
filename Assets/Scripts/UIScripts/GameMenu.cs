@@ -17,12 +17,13 @@ public class GameMenu : Menu
 
     public void Init()
     {
-        GameplayManager.Instance.currentTime = 10.0f;
+        enabled = false;
         foreach (var btn in answerButtons)
         {
             btn.onClick.AddListener(delegate {ButtonPressed(btn); });
         }                
     }
+    
     private void Update() 
     {
         if (GameplayManager.Instance.currentTime <= 0)
@@ -37,12 +38,14 @@ public class GameMenu : Menu
            _timerText.text = "0";
         }
     }
+
     private void ButtonPressed(Button btn)
     {
         foreach (var button in answerButtons)
         {
             button.interactable = false;
         }
+        enabled = false;
         int i = int.Parse(btn.name)-1;
         int indexOfRight = 0;
         for (int j = 0; j < isCorrect.Length; j++)
@@ -63,6 +66,7 @@ public class GameMenu : Menu
             StartCoroutine(PressRoutine(btn, false, i));
         }
     }
+
     private IEnumerator PressRoutine(Button btn, bool isCorrect, int index)
     {
         if (isCorrect == true)
@@ -79,6 +83,7 @@ public class GameMenu : Menu
         {
             button.interactable = true;
         }
+        enabled = true;
         GameplayManager.Instance.NextQuestion();
     }
 }

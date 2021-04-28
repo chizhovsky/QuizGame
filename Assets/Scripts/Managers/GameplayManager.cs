@@ -21,16 +21,17 @@ public class GameplayManager
     private List<int> _questionsIdList = new List<int>();
     private List<string> _arrayOfImageURL = new List<string>();
     private List<Texture> _loadedImages = new List<Texture>();
-    private QuestionsList questionsList;
+    private QuestionsList _questionsList;
     public int currentQuestion;
     public int score;
     public int questionCounter = 0;
     public float currentTime; 
-    
+
     public void Init()
     {
-        
+
     }
+
     private IEnumerator GetJsonDataRoutine (string url) 
     {
         UnityWebRequest request = UnityWebRequest.Get (url);
@@ -43,8 +44,8 @@ public class GameplayManager
         else 
         {
             QuestionsList loadedData = JsonUtility.FromJson<QuestionsList> (request.downloadHandler.text);
-            questionsList = loadedData;
-            _listOfQuestions = questionsList.questionAndAnswers;
+            _questionsList = loadedData;
+            _listOfQuestions = _questionsList.questionAndAnswers;
             Debug.Log ("Questions are loaded from web");
             GenerateListOfQuestions();
             GameManager.Instance.StartCoroutine (LoadQuestionsRoutine(_arrayOfImageURL));
@@ -67,9 +68,9 @@ public class GameplayManager
             }
         }
         GenerateQuestion();
-        ResetTimer();
         UIManager.Instance.gameMenu.ShowMenu();
         UIManager.Instance.loadingMenu.HideMenu();
+        UIManager.Instance.gameMenu.enabled = true;
     }
 
     public void LoadDataFromWeb()
@@ -135,13 +136,14 @@ public class GameplayManager
         }
     }
 
-    private void ResetTimer()
+    public void ResetTimer()
     {
         currentTime = 10f;
     }
 
     private void GameOver()
     {
+        UIManager.Instance.gameMenu.enabled = false;
         UIManager.Instance.gameOverMenu.ShowMenu();
         UIManager.Instance.gameMenu.HideMenu();
         UIManager.Instance.gameOverMenu.finalScoreText.text = "Твой результат - " + score;
@@ -154,7 +156,20 @@ public class GameplayManager
         {
             UIManager.Instance.gameOverMenu.recordText.text = "Твой рекорд - " + PlayerPrefs.GetInt("Highscore");
         }
-        Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore"));
+        Debug.Log("PlayerPrefs: " + PlayerPrefs.GetInt("Highscore")); 
+        ResetRound();       
+    }
+
+    private void ResetRound()
+    {
+        _listOfQuestions.Clear();
+        _questionsIdList.Clear();
+        _arrayOfImageURL.Clear();
+        _loadedImages.Clear();
+        questionCounter = 0;
+        score = 0;
+        UIManager.Instance.gameMenu.scoreText.text = score.ToString();
+        ResetTimer();
     }
 
     public int CountPoints(float time)

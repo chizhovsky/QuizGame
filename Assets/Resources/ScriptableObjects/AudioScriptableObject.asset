@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dabc5439fba6a645b9279b093217312, type: 3}
+  m_Name: AudioScriptableObject
+  m_EditorClassIdentifier: 
+  buttonPressed:
+    clipName: Button Pressed
+    clip: {fileID: 8300000, guid: cdc5711dc945fca4d822f4c2b0dd84e7, type: 3}
+  assPressed:
+    clipName: Ass Pressed
+    clip: {fileID: 8300000, guid: 3d28da9d65f62854d9f9bd383e360cfc, type: 3}
+  mainMenuMusic:
+    clipName: Main Menu Music
+    clip: {fileID: 8300000, guid: 4c7f5ac78cbffdd409737ff132044b52, type: 3}
