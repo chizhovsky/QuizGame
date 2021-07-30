@@ -14,14 +14,5 @@ public class InputManager
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            if (UIManager.Instance.settingsMenu.GetComponent<CanvasGroup>().alpha == 1)
-            {
-                UIManager.Instance.mainMenu.ShowMenu();
-                UIManager.Instance.settingsMenu.HideMenu();
-                AudioManager.Instance.sfxSource.PlayOneShot(AudioManager.Instance.audioData.assPressed.clip);
-            }
-        }
     }
 }

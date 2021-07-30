@@ -14,11 +14,10 @@ public class UIManager
     }
 
     public MainMenu mainMenu;
-    public SettingsMenu settingsMenu;
+    public BottomPanel bottomPanel;
     public GameMenu gameMenu;
     public LoadingMenu loadingMenu;
     public GameOverMenu gameOverMenu;
-
     public Canvas mainCanvas;
     private const string prefabUILocation = "Prefabs/";
     public void Init()
@@ -28,8 +27,8 @@ public class UIManager
         mainMenu = UnityEngine.Object.Instantiate(Resources.Load<MainMenu>(prefabUILocation + "MainMenu"), mainCanvas.transform);
         mainMenu.Init();
 
-        settingsMenu = UnityEngine.Object.Instantiate(Resources.Load<SettingsMenu>(prefabUILocation + "SettingsMenu"), mainCanvas.transform);
-        settingsMenu.Init();
+        bottomPanel = UnityEngine.Object.Instantiate(Resources.Load<BottomPanel>(prefabUILocation + "BottomPanel"), mainCanvas.transform);
+        bottomPanel.Init();
 
         loadingMenu = UnityEngine.Object.Instantiate(Resources.Load<LoadingMenu>(prefabUILocation + "LoadingMenu"), mainCanvas.transform);
         loadingMenu.Init();

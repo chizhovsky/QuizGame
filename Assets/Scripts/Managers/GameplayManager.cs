@@ -75,7 +75,7 @@ public class GameplayManager
 
     public void LoadDataFromWeb()
     {
-        GameManager.Instance.StartCoroutine (GetJsonDataRoutine ("https://drive.google.com/uc?export=download&id=1NBge4o01xtKiWIovMMIFtQEriG-WIIAN"));
+        GameManager.Instance.StartCoroutine (GetJsonDataRoutine ("https://drive.google.com/uc?export=download&id=16jBimVuS6mQoVzUVUtoCT46vMo9OzqMB"));
     }
 
     private void SetAnswers()
